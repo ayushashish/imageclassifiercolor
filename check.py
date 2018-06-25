@@ -19,6 +19,9 @@ def show_entry_fields():
     import cv2
     strings='Desktop/'+name+'.jpg'
     image = cv2.imread(strings,1)
+    if image is None:
+        print ("Image not found!")
+        return 0
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     cv2.imwrite('gray_image.jpg',gray_image)
     cv2.imshow('image',image)
