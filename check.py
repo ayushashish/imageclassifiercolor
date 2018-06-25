@@ -1,6 +1,7 @@
 import math
 import tkinter as tk
 
+#defining introductory window using tk
 root = tk.Tk()
 
 w = tk.Label(root, text="Hello World!\n"+"This code tells you if an image is color or grayscale")
@@ -10,6 +11,8 @@ x.pack()
 root.mainloop()
 
 from tkinter import *
+
+#function for classification of images
 def show_entry_fields():
     name=e1.get()
     import numpy as np
@@ -21,14 +24,23 @@ def show_entry_fields():
     cv2.imshow('image',image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+    x=list(image.shape)
+    i=(x[0]*x[1])/1000000
     img1=np.sum(image)
     img2=np.sum(cv2.imread('gray_image.jpg',1))
     val=(int(img1)-int(img2))
-    if ((math.fabs(val))<100000):
-        print ("Grayscale image")
+    if (i>0.1):
+        if ((math.fabs(val))<250000):
+            print ("Grayscale image")
+        else:
+            print ("color image")
     else:
-        print ("color image")
-
+        if ((math.fabs(val))<50000):
+            print ("Grayscale image")
+        else:
+            print ("color image")
+    
+#window for input fields
 master = Tk()
 Label(master, text="Enter file Name").grid(row=0)
 
