@@ -27,21 +27,13 @@ def show_entry_fields():
     cv2.imshow('image',image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-    x=list(image.shape)
-    i=(x[0]*x[1])/1000000
     img1=np.sum(image)
     img2=np.sum(cv2.imread('gray_image.jpg',1))
     val=(int(img1)-int(img2))
-    if (i>0.1):
-        if ((math.fabs(val))<250000):
-            print ("Grayscale image")
-        else:
-            print ("color image")
+    if (((math.fabs(val)/img2)*1000)<1.0):
+        print ("Grayscale image")
     else:
-        if ((math.fabs(val))<50000):
-            print ("Grayscale image")
-        else:
-            print ("color image")
+        print ("color image")
     
 #window for input fields
 master = Tk()
